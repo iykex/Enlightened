@@ -2,7 +2,6 @@ package xyz.iridiumion.enlightened.activity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,18 +17,18 @@ import com.github.jksiezni.permissive.PermissionsRefusedListener;
 import com.github.jksiezni.permissive.Permissive;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
-import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.File;
 import java.io.IOException;
 
+import xyz.iridiumion.enlightened.EnlightenedApplication;
 import xyz.iridiumion.enlightened.R;
 import xyz.iridiumion.enlightened.editor.HighlightingDefinition;
 import xyz.iridiumion.enlightened.editor.IridiumHighlightingEditorJ;
 import xyz.iridiumion.enlightened.fragment.EditorFragment;
 import xyz.iridiumion.enlightened.highlightingdefinitions.HighlightingDefinitionLoader;
-import xyz.iridiumion.enlightened.util.RandomUtils;
 import xyz.iridiumion.enlightened.util.FileIOUtil;
+import xyz.iridiumion.enlightened.util.RandomUtils;
 
 public class MainActivity extends AppCompatActivity implements IridiumHighlightingEditorJ.OnTextChangedListener {
 
@@ -57,19 +56,24 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
                     .commit();
         }
 
-        // Initialize the Prefs class
-        new Prefs.Builder()
-                .setContext(this)
-                .setMode(ContextWrapper.MODE_PRIVATE)
-                .setPrefsName(getPackageName())
-                .setUseDefaultSharedPreference(true)
-                .build();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        String insert_tab_visible_key = getResources().getString(R.string.prefs_key_show_tab_tool);
+        menu.findItem(R.id.insert_tab).setVisible(
+                EnlightenedApplication
+                        .preferences
+                        .getBoolean(insert_tab_visible_key, true)
+        );
+
         return true;
     }
 
