@@ -1,4 +1,4 @@
-package xyz.iridiumion.enlightened;
+package xyz.iridiumion.enlightened.activity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -23,6 +23,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.io.File;
 import java.io.IOException;
 
+import xyz.iridiumion.enlightened.R;
 import xyz.iridiumion.enlightened.editor.HighlightingDefinition;
 import xyz.iridiumion.enlightened.editor.IridiumHighlightingEditorJ;
 import xyz.iridiumion.enlightened.fragment.EditorFragment;
@@ -125,7 +126,8 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
     }
 
     private void showSettings() {
-
+        Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

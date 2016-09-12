@@ -7,4 +7,6 @@
     <string name="open_file">Open File</string>
     <string name="settings">Settings</string>
     <string name="save_file">Save File</string>
+    <string name="pref_show_tab_tool_summary">Whether to show an Insert Tab button in the toolbar</string>
+    <string name="pref_show_tab_tool">Show Tab Tool</string>
 </resources>
