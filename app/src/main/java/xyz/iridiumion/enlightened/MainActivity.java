@@ -26,11 +26,13 @@ import xyz.iridiumion.enlightened.editor.IridiumHighlightingEditorJ;
 import xyz.iridiumion.enlightened.fragment.EditorFragment;
 import xyz.iridiumion.enlightened.highlightingdefinitions.HighlightingDefinitionLoader;
 import xyz.iridiumion.enlightened.util.RandomUtils;
+import xyz.iridiumion.enlightened.util.FileReaderUtil;
 
 public class MainActivity extends AppCompatActivity implements IridiumHighlightingEditorJ.OnTextChangedListener {
 
     private static final int REQUEST_CODE_BROWSE_FOR_FILE = 1;
     private EditorFragment editorFragment;
+    private String currentOpenFilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +85,26 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
             case R.id.open_file:
                 openFile();
                 return true;
+            case R.id.save_file:
+                saveOpenFile();
+                return true;
             case R.id.settings:
                 showSettings();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void saveOpenFile() {
+        if (currentOpenFilePath == null) {
+            new MaterialDialog.Builder(MainActivity.this)
+                    .title("No file open")
+                    .content("You must open a file in order to save it.")
+                    .positiveText("Got it")
+                    .show();
+            return;
+        }
+        String textToSave = editorFragment.getEditor().getText().toString();
     }
 
     private void showSettings() {
@@ -135,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
             String selectedFileExt = RandomUtils.getFileExtension(selectedFilePath);
             //Load file into editor
             try {
-                String fileContent = new Scanner(selectedFile).useDelimiter("\\Z").next();
+                String fileContent = FileReaderUtil.readAllText(selectedFilePath);
                 editorFragment.getEditor().setText(fileContent);
                 HighlightingDefinitionLoader definitionLoader = new HighlightingDefinitionLoader();
                 HighlightingDefinition highlightingDefinition = definitionLoader.selectDefinitionFromFileExtension(selectedFileExt);

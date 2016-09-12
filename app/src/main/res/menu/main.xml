@@ -1,18 +1,23 @@
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:material="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/insert_tab"
         android:icon="@drawable/ic_action_insert_tab"
         android:title="@string/insert_tab"
-        material:showAsAction="ifRoom"/>
+        material:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/save_file"
+        android:icon="@drawable/ic_action_save"
+        android:title="@string/save_file"
+        material:showAsAction="ifRoom" />
     <item
         android:id="@+id/open_file"
         android:title="@string/open_file"
-        material:showAsAction="never"/>
+        material:showAsAction="never" />
     <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_action_settings"
         android:title="@string/settings"
-        material:showAsAction="never"/>
+        material:showAsAction="never" />
+
 </menu>
