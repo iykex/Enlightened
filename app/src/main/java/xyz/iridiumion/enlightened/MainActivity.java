@@ -19,14 +19,14 @@ import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
 import java.io.File;
-import java.util.Scanner;
+import java.io.IOException;
 
 import xyz.iridiumion.enlightened.editor.HighlightingDefinition;
 import xyz.iridiumion.enlightened.editor.IridiumHighlightingEditorJ;
 import xyz.iridiumion.enlightened.fragment.EditorFragment;
 import xyz.iridiumion.enlightened.highlightingdefinitions.HighlightingDefinitionLoader;
 import xyz.iridiumion.enlightened.util.RandomUtils;
-import xyz.iridiumion.enlightened.util.FileReaderUtil;
+import xyz.iridiumion.enlightened.util.FileIOUtil;
 
 public class MainActivity extends AppCompatActivity implements IridiumHighlightingEditorJ.OnTextChangedListener {
 
@@ -105,6 +105,12 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
             return;
         }
         String textToSave = editorFragment.getEditor().getText().toString();
+        try {
+            FileIOUtil.writeAllText(currentOpenFilePath, textToSave);
+        } catch (IOException e) {
+            //e.printStackTrace();
+            showExceptionDialog(e);
+        }
     }
 
     private void showSettings() {
@@ -152,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
             String selectedFileExt = RandomUtils.getFileExtension(selectedFilePath);
             //Load file into editor
             try {
-                String fileContent = FileReaderUtil.readAllText(selectedFilePath);
+                String fileContent = FileIOUtil.readAllText(selectedFilePath);
                 editorFragment.getEditor().setText(fileContent);
                 HighlightingDefinitionLoader definitionLoader = new HighlightingDefinitionLoader();
                 HighlightingDefinition highlightingDefinition = definitionLoader.selectDefinitionFromFileExtension(selectedFileExt);
@@ -160,14 +166,18 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
                 Toast.makeText(this, "File loaded", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 //e.printStackTrace();
-                new MaterialDialog.Builder(MainActivity.this)
-                        .title("Oops!")
-                        .content(String.format("An unexpected error occurred: %s", e.getMessage() == null ?
-                                e.toString() : e.getMessage()))
-                        .positiveText("Got it")
-                        .show();
+                showExceptionDialog(e);
             }
         }
+    }
+
+    private void showExceptionDialog(Exception e) {
+        new MaterialDialog.Builder(MainActivity.this)
+                .title("Oops!")
+                .content(String.format("An unexpected error occurred: %s", e.getMessage() == null ?
+                        e.toString() : e.getMessage()))
+                .positiveText("Got it")
+                .show();
     }
 
     private void insertTab() {

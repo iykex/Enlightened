@@ -1,13 +1,16 @@
 package xyz.iridiumion.enlightened.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 /**
  * Author: 0xFireball
  */
-public class FileReaderUtil {
+public class FileIOUtil {
     public static String readAllText(String filePath) throws IOException {
         BufferedReader br = null;
         try {
@@ -33,5 +36,13 @@ public class FileReaderUtil {
 
             throw e;
         }
+    }
+
+    public static Boolean writeAllText(String filePath, String contents) throws IOException {
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(filePath), "UTF-8"));
+        out.write(contents);
+        out.close();
+        return true;
     }
 }
