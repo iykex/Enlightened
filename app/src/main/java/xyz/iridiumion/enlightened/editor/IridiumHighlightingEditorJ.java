@@ -68,6 +68,7 @@ public class IridiumHighlightingEditorJ extends EditText {
     private int colorKeyword;
     private int colorBuiltin;
     private int colorComment;
+    private int colorString;
     private int tabWidthInCharacters = 0;
     private int tabWidth = 0;
 
@@ -290,6 +291,9 @@ public class IridiumHighlightingEditorJ extends EditText {
         colorComment = ContextCompat.getColor(
                 context,
                 R.color.syntax_comment);
+        colorString = ContextCompat.getColor(
+                context,
+                R.color.syntax_string);
     }
 
     private void cancelUpdate() {
@@ -329,6 +333,14 @@ public class IridiumHighlightingEditorJ extends EditText {
                  m.find(); )
                 e.setSpan(
                         new ForegroundColorSpan(colorNumber),
+                        m.start(),
+                        m.end(),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            for (Matcher m = highlightingDefinition.getStringPattern().matcher(e);
+                 m.find(); )
+                e.setSpan(
+                        new ForegroundColorSpan(colorString),
                         m.start(),
                         m.end(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
