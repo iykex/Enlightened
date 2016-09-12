@@ -29,7 +29,7 @@ import xyz.iridiumion.enlightened.fragment.EditorFragment;
 
 public class MainActivity extends AppCompatActivity implements IridiumHighlightingEditorJ.OnTextChangedListener {
 
-    private static final int REQUEST_CODE_BROWSE_FOR_FILE = 78964318;
+    private static final int REQUEST_CODE_BROWSE_FOR_FILE = 1;
     private EditorFragment editorFragment;
 
     @Override
@@ -84,8 +84,15 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
             case R.id.open_file:
                 openFile();
                 return true;
+            case R.id.settings:
+                showSettings();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showSettings() {
+        
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

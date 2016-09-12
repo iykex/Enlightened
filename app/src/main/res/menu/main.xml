@@ -10,4 +10,9 @@
         android:id="@+id/open_file"
         android:title="@string/open_file"
         material:showAsAction="never"/>
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_action_settings"
+        android:title="@string/settings"
+        material:showAsAction="never"/>
 </menu>
