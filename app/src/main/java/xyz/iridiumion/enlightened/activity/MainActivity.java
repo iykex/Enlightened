@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -68,13 +69,24 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         String insert_tab_visible_key = getResources().getString(R.string.prefs_key_show_tab_tool);
-        menu.findItem(R.id.insert_tab).setVisible(
-                EnlightenedApplication
-                        .preferences
-                        .getBoolean(insert_tab_visible_key, true)
-        );
+        Boolean isMenuVisible = EnlightenedApplication
+                .preferences
+                .getBoolean(insert_tab_visible_key, true);
+        MenuItem insertTabBtn = menu.findItem(R.id.insert_tab);
+        insertTabBtn.setVisible(isMenuVisible);
 
         return true;
+    }
+
+    private void updateUiToPreferences() {
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        updateUiToPreferences();
     }
 
     @Override

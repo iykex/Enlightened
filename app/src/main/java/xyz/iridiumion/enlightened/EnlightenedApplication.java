@@ -15,8 +15,8 @@ public class EnlightenedApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        preferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-
+        SharedPreferences loadedPrefs = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        preferences = loadedPrefs;
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(
                     new StrictMode.ThreadPolicy.Builder()
