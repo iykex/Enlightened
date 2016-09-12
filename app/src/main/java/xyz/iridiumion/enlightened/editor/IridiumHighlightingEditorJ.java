@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 import xyz.iridiumion.enlightened.R;
-import xyz.iridiumion.enlightened.highlightingdefinitions.DefaultHighlightingDefinition;
+import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.DefaultHighlightingDefinition;
 
 /**
  * Author: 0xFireball
@@ -117,8 +117,8 @@ public class IridiumHighlightingEditorJ extends EditText {
         return dirty;
     }
 
-    public void loadHighlightingDefinition() {
-
+    public void loadHighlightingDefinition(HighlightingDefinition newHighlightingDefinition) {
+        this.highlightingDefinition = newHighlightingDefinition;
     }
 
     public void setTextHighlighted(CharSequence text) {

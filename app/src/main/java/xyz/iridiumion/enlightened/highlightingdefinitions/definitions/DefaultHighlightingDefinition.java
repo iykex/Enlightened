@@ -1,4 +1,4 @@
-package xyz.iridiumion.enlightened.highlightingdefinitions;
+package xyz.iridiumion.enlightened.highlightingdefinitions.definitions;
 
 import java.util.regex.Pattern;
 

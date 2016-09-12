@@ -4,9 +4,8 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,12 +19,13 @@ import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
+import xyz.iridiumion.enlightened.editor.HighlightingDefinition;
 import xyz.iridiumion.enlightened.editor.IridiumHighlightingEditorJ;
 import xyz.iridiumion.enlightened.fragment.EditorFragment;
+import xyz.iridiumion.enlightened.highlightingdefinitions.HighlightingDefinitionLoader;
+import xyz.iridiumion.enlightened.util.RandomUtils;
 
 public class MainActivity extends AppCompatActivity implements IridiumHighlightingEditorJ.OnTextChangedListener {
 
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-
         return true;
     }
 
@@ -132,10 +131,15 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
 
         if (requestCode == REQUEST_CODE_BROWSE_FOR_FILE && resultCode == RESULT_OK) {
             String selectedFilePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            File selectedFile = new File(selectedFilePath);
+            String selectedFileExt = RandomUtils.getFileExtension(selectedFilePath);
             //Load file into editor
             try {
-                String fileContent = new Scanner(new File(selectedFilePath)).useDelimiter("\\Z").next();
+                String fileContent = new Scanner(selectedFile).useDelimiter("\\Z").next();
                 editorFragment.getEditor().setText(fileContent);
+                HighlightingDefinitionLoader definitionLoader = new HighlightingDefinitionLoader();
+                HighlightingDefinition highlightingDefinition = definitionLoader.selectDefinitionFromFileExtension(selectedFileExt);
+                editorFragment.getEditor().loadHighlightingDefinition(highlightingDefinition);
                 Toast.makeText(this, "File loaded", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 //e.printStackTrace();
