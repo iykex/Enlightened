@@ -184,4 +184,8 @@ public class EditorFragment extends Fragment {
 
         return yOffset;
     }
+
+    public IridiumHighlightingEditorJ getEditor() {
+        return codeEditor;
+    }
 }
