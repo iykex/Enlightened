@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         String textToSave = editorFragment.getEditor().getText().toString();
         try {
             FileIOUtil.writeAllText(currentOpenFilePath, textToSave);
+            Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             //e.printStackTrace();
             showExceptionDialog(e);
@@ -163,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
                 HighlightingDefinitionLoader definitionLoader = new HighlightingDefinitionLoader();
                 HighlightingDefinition highlightingDefinition = definitionLoader.selectDefinitionFromFileExtension(selectedFileExt);
                 editorFragment.getEditor().loadHighlightingDefinition(highlightingDefinition);
+                currentOpenFilePath = selectedFilePath;
                 Toast.makeText(this, "File loaded", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 //e.printStackTrace();
