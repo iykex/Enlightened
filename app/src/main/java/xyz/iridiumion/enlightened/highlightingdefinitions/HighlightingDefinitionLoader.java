@@ -13,7 +13,6 @@ public class HighlightingDefinitionLoader {
         switch (selectedFileExt) {
             case "js":
                 return new JavaScriptHighlightingDefinition();
-            break;
             default:
                 return new DefaultHighlightingDefinition();
         }
