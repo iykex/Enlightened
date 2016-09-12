@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
     }
 
     private void showSettings() {
-        
+
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
