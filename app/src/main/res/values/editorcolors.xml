@@ -5,4 +5,6 @@
     <color name="syntax_keyword">#68C8E8</color>
     <color name="syntax_builtin">#28DEAA</color>
     <color name="syntax_comment">#808080</color>
+    <color name="editor_text">#262626</color>
+    <color name="background_editor">#F0F0F0</color>
 </resources>
