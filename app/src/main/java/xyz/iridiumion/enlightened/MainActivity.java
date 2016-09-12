@@ -2,6 +2,7 @@ package xyz.iridiumion.enlightened;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.github.jksiezni.permissive.PermissionsRefusedListener;
 import com.github.jksiezni.permissive.Permissive;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.File;
 import java.io.IOException;
@@ -53,6 +55,14 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
                             EditorFragment.TAG)
                     .commit();
         }
+
+        // Initialize the Prefs class
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
     }
 
     @Override

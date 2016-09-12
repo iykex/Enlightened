@@ -27,6 +27,7 @@ repositories {
         url "http://dl.bintray.com/lukaville/maven"
     }
     maven { url "https://jitpack.io" }
+    maven { url "http://dl.bintray.com/pixplicity/maven" }
 }
 
 dependencies {
@@ -37,4 +38,5 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.github.jksiezni.permissive:permissive:0.1'
     compile 'com.afollestad.material-dialogs:core:0.9.0.1'
+    compile 'com.pixplicity.easyprefs:library:1.8.1@aar'
 }
