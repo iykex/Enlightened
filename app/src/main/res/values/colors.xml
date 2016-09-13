@@ -3,4 +3,9 @@
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Layout colors-->
+    <color name="secondary_text">#888888</color>
+    <color name="background_drawer">#FEFEFE</color>
+    <color name="primary_translucent">#8222</color>
 </resources>

@@ -4,11 +4,15 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,17 +40,27 @@ import xyz.iridiumion.enlightened.fragment.EditorFragment;
 import xyz.iridiumion.enlightened.highlightingdefinitions.HighlightingDefinitionLoader;
 import xyz.iridiumion.enlightened.util.FileIOUtil;
 import xyz.iridiumion.enlightened.util.RandomUtils;
+import xyz.iridiumion.enlightened.widget.TouchThruDrawerLayout;
 
 public class MainActivity extends AppCompatActivity implements IridiumHighlightingEditorJ.OnTextChangedListener {
 
     private static final int REQUEST_CODE_BROWSE_FOR_FILE = 1;
     private EditorFragment editorFragment;
     private String currentOpenFilePath;
+    private TouchThruDrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+    private View menuFrame;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initSystemBars(this);
+        initToolbar();
+        initDrawer();
+        initRecentList();
 
         if (savedInstanceState == null ||
                 (editorFragment = (EditorFragment)
@@ -65,12 +79,31 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
 
     }
 
+    private static void initSystemBars(AppCompatActivity activity) {
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+
         return true;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle state) {
+        super.onPostCreate(state);
+
+        drawerToggle.syncState();
     }
 
     @Override
@@ -90,11 +123,61 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         return super.onPrepareOptionsMenu(menu);
     }
 
+    private void initDrawer() {
+        drawerLayout = (TouchThruDrawerLayout) findViewById(
+                R.id.drawer_layout);
+
+        menuFrame = findViewById(R.id.menu_frame);
+
+        drawerToggle =
+                new ActionBarDrawerToggle(
+                        this,
+                        drawerLayout,
+                        toolbar,
+                        R.string.drawer_open,
+                        R.string.drawer_close) {
+                    public void onDrawerClosed(View view) {
+                        supportInvalidateOptionsMenu();
+                    }
+
+                    public void onDrawerOpened(View view) {
+                        supportInvalidateOptionsMenu();
+                    }
+                };
+
+        drawerToggle.setDrawerIndicatorEnabled(true);
+        drawerLayout.addDrawerListener(drawerToggle);
+    }
+
+
+    private void initRecentList() {
+    }
+
+    private void closeDrawer() {
+        if (drawerLayout == null)
+            return;
+
+        drawerLayout.closeDrawer(menuFrame);
+    }
+
+    private void openDrawer() {
+        if (drawerLayout == null)
+            return;
+
+        drawerLayout.openDrawer(menuFrame);
+    }
+
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.en_toolbar);
+        setSupportActionBar(toolbar);
+    }
+
     private void updateUiToPreferences() {
         invalidateOptionsMenu();
 
         String editor_font_size_key = getResources().getString(R.string.prefs_key_font_size);
-        editorFragment.getEditor().setTextSize(TypedValue.COMPLEX_UNIT_SP, EnlightenedApplication.preferences.getFloat(editor_font_size_key, 12.0f));
+        float newFontSize = Float.parseFloat(EnlightenedApplication.preferences.getString(editor_font_size_key, "12.0"));
+        editorFragment.getEditor().setTextSize(TypedValue.COMPLEX_UNIT_SP, newFontSize);
     }
 
     @Override

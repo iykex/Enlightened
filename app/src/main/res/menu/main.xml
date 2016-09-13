@@ -11,6 +11,10 @@
         android:title="@string/save_file"
         material:showAsAction="ifRoom" />
     <item
+        android:id="@+id/save_file_as"
+        android:title="@string/save_file_as"
+        material:showAsAction="never" />
+    <item
         android:id="@+id/open_file"
         android:title="@string/open_file"
         material:showAsAction="never" />
