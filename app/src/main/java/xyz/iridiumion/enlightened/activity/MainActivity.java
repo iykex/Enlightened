@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         String autosave_key = getResources().getString(R.string.prefs_key_autosave);
         if (EnlightenedApplication
                 .preferences
-                .getBoolean(autosave_key, true)) {
+                .getBoolean(autosave_key, true) && currentOpenFilePath != null) {
             saveOpenFile(false, false);
         }
     }
