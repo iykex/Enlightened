@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         MenuItem insertTabBtn = menu.findItem(R.id.insert_tab);
         insertTabBtn.setVisible(isMenuVisible);
 
-        return true;
+        return super.onPrepareOptionsMenu(menu);
     }
 
     private void updateUiToPreferences() {
