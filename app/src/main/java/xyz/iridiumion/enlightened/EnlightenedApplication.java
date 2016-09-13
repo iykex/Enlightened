@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 
 /**
  * Author: 0xFireball
@@ -15,7 +16,7 @@ public class EnlightenedApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        SharedPreferences loadedPrefs = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        SharedPreferences loadedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         preferences = loadedPrefs;
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(

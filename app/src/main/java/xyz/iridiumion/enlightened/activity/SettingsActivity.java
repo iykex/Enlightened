@@ -8,6 +8,7 @@ import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import xyz.iridiumion.enlightened.EnlightenedApplication;
 import xyz.iridiumion.enlightened.R;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -46,13 +47,34 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
-            getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+
+            EnlightenedApplication.preferences
+                    .registerOnSharedPreferenceChangeListener(
+                            this);
         }
 
+        @Override
+        public void onResume() {
+            super.onResume();
+
+            EnlightenedApplication.preferences
+                    .registerOnSharedPreferenceChangeListener(
+                            this);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+
+            EnlightenedApplication.preferences
+                    .unregisterOnSharedPreferenceChangeListener(
+                            this);
+        }
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
             //
+
         }
     }
 }
