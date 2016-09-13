@@ -7,8 +7,10 @@
     <string name="open_file">Open File</string>
     <string name="settings">Settings</string>
     <string name="save_file">Save File</string>
-    <string name="pref_show_tab_tool_summary">Whether to show an Insert Tab button in the toolbar. Will take effect next time you restart the app.</string>
+    <string name="pref_show_tab_tool_summary">Whether to show an Insert Tab button in the toolbar.</string>
     <string name="pref_show_tab_tool">Show Tab Tool</string>
     <string name="pref_autosave">Auto-save files</string>
     <string name="pref_autosave_summary">If enabled, Enlightened will automatically save your changes.</string>
+    <string name="pref_font_size_summary">The font size for the code editor</string>
+    <string name="pref_font_size">Font Size</string>
 </resources>

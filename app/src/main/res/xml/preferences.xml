@@ -10,4 +10,11 @@
         android:key="@string/prefs_key_autosave"
         android:summary="@string/pref_autosave_summary"
         android:title="@string/pref_autosave" />
+    <EditTextPreference
+        android:defaultValue="12"
+        android:inputType="number"
+        android:key="@string/prefs_key_font_size"
+        android:summary="@string/pref_font_size_summary"
+        android:title="@string/pref_font_size" />
+    
 </PreferenceScreen>

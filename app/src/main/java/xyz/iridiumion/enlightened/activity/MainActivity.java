@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -91,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
 
     private void updateUiToPreferences() {
         invalidateOptionsMenu();
+
+        String editor_font_size_key = getResources().getString(R.string.prefs_key_font_size);
+        editorFragment.getEditor().setTextSize(TypedValue.COMPLEX_UNIT_SP, EnlightenedApplication.preferences.getFloat(editor_font_size_key, 12.0f));
     }
 
     @Override

@@ -2,4 +2,6 @@
 <resources>
     <string name="prefs_key_show_tab_tool">show_tab_tool</string>
     <string name="prefs_key_autosave">autosave</string>
+    <string name="prefs_key_font_size">font_size</string>
+
 </resources>
