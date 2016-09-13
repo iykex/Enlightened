@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="File Name" />
+
+    <EditText
+        android:id="@+id/sfad_file_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=".txt"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Directory" />
+
+    <EditText
+        android:id="@+id/sfad_dir_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="/sdcard/"/>
+
+</LinearLayout>

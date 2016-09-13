@@ -2,16 +2,21 @@ package xyz.iridiumion.enlightened.activity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.jksiezni.permissive.PermissionsGrantedListener;
 import com.github.jksiezni.permissive.PermissionsRefusedListener;
@@ -70,11 +75,16 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         String insert_tab_visible_key = getResources().getString(R.string.prefs_key_show_tab_tool);
-        Boolean isMenuVisible = EnlightenedApplication
-                .preferences
-                .getBoolean(insert_tab_visible_key, true);
-        MenuItem insertTabBtn = menu.findItem(R.id.insert_tab);
-        insertTabBtn.setVisible(isMenuVisible);
+
+        menu.findItem(R.id.insert_tab)
+                .setVisible(EnlightenedApplication
+                        .preferences
+                        .getBoolean(insert_tab_visible_key, true));
+
+        /*
+        menu.findItem(R.id.save_file)
+                .setEnabled(currentOpenFilePath != null);
+        */
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -102,6 +112,12 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
             editorFragment.clearError();
             editorFragment.updateHighlighting();
         }
+        String autosave_key = getResources().getString(R.string.prefs_key_autosave);
+        if (EnlightenedApplication
+                .preferences
+                .getBoolean(autosave_key, true)) {
+            saveOpenFile(false, false);
+        }
     }
 
     @Override
@@ -124,21 +140,56 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
     }
 
     private void saveOpenFile() {
-        if (currentOpenFilePath == null) {
+        saveOpenFile(true, true);
+    }
+
+    private void saveOpenFile(boolean showErrorIfAccident, boolean showToast) {
+        if (currentOpenFilePath == null && showErrorIfAccident) {
+            /*
             new MaterialDialog.Builder(MainActivity.this)
                     .title("No file open")
                     .content("You must open a file in order to save it.")
                     .positiveText("Got it")
                     .show();
+            */
+            showSaveFileAsDialog();
             return;
         }
         String textToSave = editorFragment.getEditor().getText().toString();
         try {
             FileIOUtil.writeAllText(currentOpenFilePath, textToSave);
-            Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
+            if (showToast)
+                Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             //e.printStackTrace();
             showExceptionDialog(e);
+        }
+    }
+
+    private void showSaveFileAsDialog() {
+        MaterialDialog saveFileAsDialog = new MaterialDialog.Builder(this)
+                .title("Save File As")
+                .customView(R.layout.dialog_save_file_as, true)
+                .positiveText("Save As")
+                .negativeText("Cancel")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        View view = dialog.getCustomView();
+                        if (view == null)
+                            return;
+                        String saveDirectoryInput = ((EditText) view.findViewById(R.id.sfad_dir_path)).getText().toString();
+                        String saveFileName = ((EditText) view.findViewById(R.id.sfad_file_name)).getText().toString();
+                        currentOpenFilePath = new File(saveDirectoryInput, saveFileName).getAbsolutePath();
+                        saveOpenFile();
+                    }
+                })
+                .show();
+        View view = saveFileAsDialog.getCustomView();
+        EditText saveDirectoryInput = null;
+        if (view != null) {
+            saveDirectoryInput = (EditText) view.findViewById(R.id.sfad_dir_path);
+            saveDirectoryInput.setText(Environment.getExternalStorageDirectory().getPath());
         }
     }
 
