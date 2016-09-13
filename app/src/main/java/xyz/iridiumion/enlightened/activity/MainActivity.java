@@ -2,14 +2,12 @@ package xyz.iridiumion.enlightened.activity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
     private ActionBarDrawerToggle drawerToggle;
     private View menuFrame;
     private Toolbar toolbar;
+    private ListView recentFilesListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +152,24 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
 
 
     private void initRecentList() {
+        recentFilesListView = (ListView) findViewById(R.id.recent_files);
+        recentFilesListView.setEmptyView(findViewById(R.id.no_files));
+        recentFilesListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(
+                            AdapterView<?> parent,
+                            View view,
+                            int position,
+                            long id) {
+                        selectRecentFile(id);
+                        closeDrawer();
+                    }
+                });
+    }
+
+    private void selectRecentFile(long id) {
+        
     }
 
     private void closeDrawer() {
