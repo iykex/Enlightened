@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 import xyz.iridiumion.enlightened.editor.HighlightingDefinition;
 
 /**
- * Author: 0xFireball
+ * Author: 0xFireball, IridiumIon Software
  */
-public class JavaScriptHighlightingDefinition implements HighlightingDefinition {
+public class CSharpHighlightingDefinition implements HighlightingDefinition {
     //Default Highlighting definitions
     private static final Pattern PATTERN_LINE = Pattern.compile(".*\\n");
     private static final Pattern PATTERN_NUMBERS = Pattern.compile("\\b(\\d*[.]?\\d+)\\b");
@@ -17,14 +17,25 @@ public class JavaScriptHighlightingDefinition implements HighlightingDefinition 
             Pattern.MULTILINE);
     private static final Pattern PATTERN_STRING = Pattern.compile("\"(\\\\[\\s\\S]|[^\"])*\"|'(\\\\[\\s\\S]|[^'])*'|(//.*|/\\*[\\s\\S]*?\\*/)");
     private static final Pattern PATTERN_KEYWORDS = Pattern.compile(
-            "\\b(let|var|try|catch|break|continue|" +
-                    "do|for|while|if|else|switch|in|out|inout|float|int|void|bool|true|false|new|function)\\b");
+            "\\b(var|try|catch|finally|break|continue|" +
+                    "do|for|foreach|continue|while|if|else|switch|in|is|as|float|int|void|bool|true|false|new|" +
+                    "public|static|readonly|const|private|protected|class|interface|using|namespace|struct|this|base|" +
+                    "true|false|null|return" +
+                    "virtual|internal|abstract|override|async|await|explicit|ref|out|extern|checked|unchecked|" +
+                    "continue|enum|lock|partial|params|typeof|unsafe|implicit|default|let|yield|value|operator|global" +
+                    ")\\b");
     private static final Pattern PATTERN_BUILTINS = Pattern.compile(
-            "\\b(radians|degrees|sin|cos|tan|asin|acos|atan|pow|JSON|document|window|location|console)\\b");
+            "\\b(void|int|long|ulong|float|double|bool|short|byte|object|string|dynamic|" +
+                    "Console|Int32|Int64|String|Math|Random|Delegate" +
+                    ")\\b"
+    );
     private static final Pattern PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*");
-    private static final Pattern PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()"); //TODO: Fix this
-    private static final Pattern PATTERN_IDENTIFIER = Pattern.compile("a^");
-
+    private static final Pattern PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()"); //TODO: Are we sure about this?
+    private static final Pattern PATTERN_IDENTIFIER = Pattern.compile("((?<=class)\\s\\w*)|" +
+            "((?<=struct)\\s\\w*)|" +
+            "((?<=using)\\s(\\w|\\.)+[^;])|" + //Match everything between import and semicolon
+            "((?<=namespace)\\s(\\w|\\.)+[^;])"
+    );
 
     @Override
     public Pattern getLinePattern() {

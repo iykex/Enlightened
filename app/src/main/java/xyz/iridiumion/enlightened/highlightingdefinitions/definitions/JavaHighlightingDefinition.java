@@ -17,12 +17,13 @@ public class JavaHighlightingDefinition implements HighlightingDefinition {
             Pattern.MULTILINE);
     private static final Pattern PATTERN_STRING = Pattern.compile("\"(\\\\[\\s\\S]|[^\"])*\"|'(\\\\[\\s\\S]|[^'])*'|(//.*|/\\*[\\s\\S]*?\\*/)");
     private static final Pattern PATTERN_KEYWORDS = Pattern.compile(
-            "\\b(var|try|catch|break|continue|" +
-                    "do|for|while|if|else|switch|in|instanceof|float|int|void|bool|true|false|new|" +
-                    "public|static|final|private|protected|class|interface|import|package" +
+            "\\b(var|try|catch|finally|break|continue|" +
+                    "do|for|continue|while|if|else|switch|in|instanceof|float|int|void|bool|true|false|new|" +
+                    "true|false|null|return" +
+                    "public|static|final|private|protected|class|interface|import|package|this|super" +
                     ")\\b");
     private static final Pattern PATTERN_BUILTINS = Pattern.compile(
-            "\\b(void|int|float|double|boolean|Object|String)\\b");
+            "\\b(void|int|long|float|double|boolean|Object|String)\\b");
     private static final Pattern PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*");
     private static final Pattern PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()"); //TODO: Are we sure about this?
     private static final Pattern PATTERN_IDENTIFIER = Pattern.compile("((?<=class)\\s\\w*)|" +
