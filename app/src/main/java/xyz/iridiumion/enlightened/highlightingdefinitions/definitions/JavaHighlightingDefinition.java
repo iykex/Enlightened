@@ -19,7 +19,7 @@ public class JavaHighlightingDefinition implements HighlightingDefinition {
     private static final Pattern PATTERN_KEYWORDS = Pattern.compile(
             "\\b(var|try|catch|finally|break|continue|" +
                     "do|for|continue|while|if|else|switch|in|instanceof|float|int|void|bool|true|false|new|" +
-                    "true|false|null|return" +
+                    "true|false|null|return|" +
                     "public|static|final|private|protected|class|interface|import|package|this|super" +
                     ")\\b");
     private static final Pattern PATTERN_BUILTINS = Pattern.compile(
