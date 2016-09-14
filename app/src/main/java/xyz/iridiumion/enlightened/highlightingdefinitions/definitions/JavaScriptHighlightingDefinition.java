@@ -23,6 +23,7 @@ public class JavaScriptHighlightingDefinition implements HighlightingDefinition 
             "\\b(radians|degrees|sin|cos|tan|asin|acos|atan|pow|JSON|document|window|location|console)\\b");
     private static final Pattern PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*");
     private static final Pattern PATTERN_SYMBOL = Pattern.compile("\\{|}|\\)|\\("); //TODO: Fix this
+    private static final Pattern PATTERN_IDENTIFIER = Pattern.compile("a^");
 
 
     @Override
@@ -63,5 +64,10 @@ public class JavaScriptHighlightingDefinition implements HighlightingDefinition 
     @Override
     public Pattern getSymbolPattern() {
         return PATTERN_SYMBOL;
+    }
+
+    @Override
+    public Pattern getIdentifierPattern() {
+        return PATTERN_IDENTIFIER;
     }
 }

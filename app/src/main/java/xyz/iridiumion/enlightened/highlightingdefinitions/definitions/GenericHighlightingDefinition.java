@@ -18,7 +18,8 @@ public class GenericHighlightingDefinition implements HighlightingDefinition {
     private static final Pattern PATTERN_KEYWORDS = Pattern.compile("a^");
     private static final Pattern PATTERN_BUILTINS = Pattern.compile("a^");
     private static final Pattern PATTERN_COMMENTS = Pattern.compile("a^");
-    private static final Pattern PATTERN_SYMBOL = Pattern.compile("a^");
+    private static final Pattern PATTERN_SYMBOL = Pattern.compile("a^"); //TODO: Are we sure about this?
+    private static final Pattern PATTERN_IDENTIFIER = Pattern.compile("a^");
 
 
     @Override
@@ -59,5 +60,10 @@ public class GenericHighlightingDefinition implements HighlightingDefinition {
     @Override
     public Pattern getSymbolPattern() {
         return PATTERN_SYMBOL;
+    }
+
+    @Override
+    public Pattern getIdentifierPattern() {
+        return PATTERN_IDENTIFIER;
     }
 }

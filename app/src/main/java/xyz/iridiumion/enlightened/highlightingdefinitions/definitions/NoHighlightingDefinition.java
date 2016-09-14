@@ -17,6 +17,7 @@ public class NoHighlightingDefinition implements HighlightingDefinition {
     private static final Pattern PATTERN_BUILTINS = Pattern.compile("a^");
     private static final Pattern PATTERN_COMMENTS = Pattern.compile("a^");
     private static final Pattern PATTERN_SYMBOL = Pattern.compile("a^");
+    private static final Pattern PATTERN_IDENTIFIER = Pattern.compile("a^");
 
 
     @Override
@@ -58,4 +59,10 @@ public class NoHighlightingDefinition implements HighlightingDefinition {
     public Pattern getSymbolPattern() {
         return PATTERN_SYMBOL;
     }
+
+    @Override
+    public Pattern getIdentifierPattern() {
+        return PATTERN_IDENTIFIER;
+    }
+
 }

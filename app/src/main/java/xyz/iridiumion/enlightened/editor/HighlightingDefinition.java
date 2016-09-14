@@ -21,4 +21,6 @@ public interface HighlightingDefinition {
     Pattern getStringPattern();
 
     Pattern getSymbolPattern();
+
+    Pattern getIdentifierPattern();
 }
