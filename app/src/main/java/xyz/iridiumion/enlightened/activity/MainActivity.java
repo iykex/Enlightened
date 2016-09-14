@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         saveOpenFile(true, true);
     }
 
-    private void saveOpenFile(boolean showErrorIfAccident, boolean showToast) {
+    private void saveOpenFile(boolean showErrorIfAccident, final boolean showToast) {
         if (currentOpenFilePath == null && showErrorIfAccident) {
             /*
             new MaterialDialog.Builder(MainActivity.this)
@@ -264,15 +264,35 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
             showSaveFileAsDialog();
             return;
         }
-        String textToSave = editorFragment.getEditor().getText().toString();
-        try {
-            FileIOUtil.writeAllText(currentOpenFilePath, textToSave);
-            if (showToast)
-                Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            //e.printStackTrace();
-            showExceptionDialog(e);
-        }
+        new Permissive.Request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .whenPermissionsGranted(new PermissionsGrantedListener() {
+                    @Override
+                    public void onPermissionsGranted(String[] permissions) throws SecurityException {
+                        // given permissions are granted
+
+                        String textToSave = editorFragment.getEditor().getText().toString();
+                        try {
+                            FileIOUtil.writeAllText(currentOpenFilePath, textToSave);
+                            if (showToast)
+                                Toast.makeText(MainActivity.this, "File saved", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            //e.printStackTrace();
+                            showExceptionDialog(e);
+                        }
+                    }
+                })
+                .whenPermissionsRefused(new PermissionsRefusedListener() {
+                    @Override
+                    public void onPermissionsRefused(String[] permissions) {
+                        // given permissions are refused
+                        new MaterialDialog.Builder(MainActivity.this)
+                                .title("Permission not granted")
+                                .content("Enlightened needs your permission to load and save files. Please grant this permission in settings.")
+                                .positiveText("Got it")
+                                .show();
+                    }
+                })
+                .execute(MainActivity.this);
     }
 
     private void showSaveFileAsDialog() {

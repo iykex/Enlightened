@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "xyz.iridiumion.enlightened"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 24
-        versionCode 16
-        versionName "1.5-beta2"
+        versionCode 18
+        versionName "1.5-beta3"
     }
     buildTypes {
         release {
