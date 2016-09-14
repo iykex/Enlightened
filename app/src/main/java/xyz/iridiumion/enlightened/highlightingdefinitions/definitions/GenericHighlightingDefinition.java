@@ -7,22 +7,18 @@ import xyz.iridiumion.enlightened.editor.HighlightingDefinition;
 /**
  * Author: 0xFireball
  */
-public class JavaScriptHighlightingDefinition implements HighlightingDefinition {
+
+//TODO: Include color in a newer version
+public class GenericHighlightingDefinition implements HighlightingDefinition {
     //Default Highlighting definitions
     private static final Pattern PATTERN_LINE = Pattern.compile(".*\\n");
     private static final Pattern PATTERN_NUMBERS = Pattern.compile("\\b(\\d*[.]?\\d+)\\b");
-    private static final Pattern PATTERN_PREPROCESSOR = Pattern.compile(
-            "^[\t ]*(#define|#undef|#if|#ifdef|#ifndef|#else|#elif|#endif|" +
-                    "#error|#pragma|#extension|#version|#line)\\b",
-            Pattern.MULTILINE);
-    private static final Pattern PATTERN_STRING = Pattern.compile("\"(\\\\[\\s\\S]|[^\"])*\"|'(\\\\[\\s\\S]|[^'])*'|(//.*|/\\*[\\s\\S]*?\\*/)");
-    private static final Pattern PATTERN_KEYWORDS = Pattern.compile(
-            "\\b(let|var|try|catch|break|continue|" +
-                    "do|for|while|if|else|switch|in|out|inout|float|int|void|bool|true|false|new|function)\\b");
-    private static final Pattern PATTERN_BUILTINS = Pattern.compile(
-            "\\b(radians|degrees|sin|cos|tan|asin|acos|atan|pow|JSON|document|window|location|console)\\b");
-    private static final Pattern PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*");
-    private static final Pattern PATTERN_SYMBOL = Pattern.compile("\\{|}|\\)|\\("); //TODO: Fix this
+    private static final Pattern PATTERN_PREPROCESSOR = Pattern.compile("a^");
+    private static final Pattern PATTERN_STRING = Pattern.compile("a^");
+    private static final Pattern PATTERN_KEYWORDS = Pattern.compile("a^");
+    private static final Pattern PATTERN_BUILTINS = Pattern.compile("a^");
+    private static final Pattern PATTERN_COMMENTS = Pattern.compile("a^");
+    private static final Pattern PATTERN_SYMBOL = Pattern.compile("a^");
 
 
     @Override

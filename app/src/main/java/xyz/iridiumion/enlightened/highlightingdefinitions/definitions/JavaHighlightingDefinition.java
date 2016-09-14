@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 import xyz.iridiumion.enlightened.editor.HighlightingDefinition;
 
 /**
- * Author: 0xFireball
+ * Author: 0xFireball, IridiumIon Software
  */
-public class JavaScriptHighlightingDefinition implements HighlightingDefinition {
+public class JavaHighlightingDefinition implements HighlightingDefinition {
     //Default Highlighting definitions
     private static final Pattern PATTERN_LINE = Pattern.compile(".*\\n");
     private static final Pattern PATTERN_NUMBERS = Pattern.compile("\\b(\\d*[.]?\\d+)\\b");
@@ -17,12 +17,14 @@ public class JavaScriptHighlightingDefinition implements HighlightingDefinition 
             Pattern.MULTILINE);
     private static final Pattern PATTERN_STRING = Pattern.compile("\"(\\\\[\\s\\S]|[^\"])*\"|'(\\\\[\\s\\S]|[^'])*'|(//.*|/\\*[\\s\\S]*?\\*/)");
     private static final Pattern PATTERN_KEYWORDS = Pattern.compile(
-            "\\b(let|var|try|catch|break|continue|" +
-                    "do|for|while|if|else|switch|in|out|inout|float|int|void|bool|true|false|new|function)\\b");
+            "\\b(var|try|catch|break|continue|" +
+                    "do|for|while|if|else|switch|in|instanceof|float|int|void|bool|true|false|new|" +
+                    "public|static|final|private|protected|class|interface" +
+                    ")\\b");
     private static final Pattern PATTERN_BUILTINS = Pattern.compile(
-            "\\b(radians|degrees|sin|cos|tan|asin|acos|atan|pow|JSON|document|window|location|console)\\b");
+            "\\b(void|int|float|double|boolean|Object|String)\\b");
     private static final Pattern PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*");
-    private static final Pattern PATTERN_SYMBOL = Pattern.compile("\\{|}|\\)|\\("); //TODO: Fix this
+    private static final Pattern PATTERN_SYMBOL = Pattern.compile("\\{|}|\\)|\\("); //TODO: Are we sure about this?
 
 
     @Override

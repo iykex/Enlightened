@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
     }
 
     private void selectRecentFile(long id) {
-        
+
     }
 
     private void closeDrawer() {
@@ -237,6 +237,9 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
                 return true;
             case R.id.save_file:
                 saveOpenFile();
+                return true;
+            case R.id.save_file_as:
+                showSaveFileAsDialog();
                 return true;
             case R.id.settings:
                 showSettings();

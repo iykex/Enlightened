@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 import xyz.iridiumion.enlightened.R;
-import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.DefaultHighlightingDefinition;
+import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.GenericHighlightingDefinition;
 
 /**
  * Author: 0xFireball
@@ -32,7 +32,7 @@ public class IridiumHighlightingEditorJ extends EditText {
         void onTextChanged(String text);
     }
 
-    private HighlightingDefinition highlightingDefinition = new DefaultHighlightingDefinition();
+    private HighlightingDefinition highlightingDefinition = new GenericHighlightingDefinition();
 
     private static final Pattern PATTERN_TRAILING_WHITE_SPACE = Pattern.compile(
             "[\\t ]+$",
@@ -69,6 +69,7 @@ public class IridiumHighlightingEditorJ extends EditText {
     private int colorBuiltin;
     private int colorComment;
     private int colorString;
+    private int colorSymbol;
     private int tabWidthInCharacters = 0;
     private int tabWidth = 0;
 
@@ -294,6 +295,9 @@ public class IridiumHighlightingEditorJ extends EditText {
         colorString = ContextCompat.getColor(
                 context,
                 R.color.syntax_string);
+        colorSymbol = ContextCompat.getColor(
+                context,
+                R.color.syntax_symbol);
     }
 
     private void cancelUpdate() {
@@ -337,14 +341,6 @@ public class IridiumHighlightingEditorJ extends EditText {
                         m.end(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-            for (Matcher m = highlightingDefinition.getStringPattern().matcher(e);
-                 m.find(); )
-                e.setSpan(
-                        new ForegroundColorSpan(colorString),
-                        m.start(),
-                        m.end(),
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
             for (Matcher m = highlightingDefinition.getPreprocessorPattern().matcher(e);
                  m.find(); )
                 e.setSpan(
@@ -376,6 +372,23 @@ public class IridiumHighlightingEditorJ extends EditText {
                         m.start(),
                         m.end(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            for (Matcher m = highlightingDefinition.getStringPattern().matcher(e);
+                 m.find(); )
+                e.setSpan(
+                        new ForegroundColorSpan(colorString),
+                        m.start(),
+                        m.end(),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            for (Matcher m = highlightingDefinition.getSymbolPattern().matcher(e);
+                 m.find(); )
+                e.setSpan(
+                        new ForegroundColorSpan(colorSymbol),
+                        m.start(),
+                        m.end(),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         } catch (IllegalStateException ex) {
             // raised by Matcher.start()/.end() when
             // no successful match has been made what

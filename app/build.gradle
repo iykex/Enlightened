@@ -8,8 +8,8 @@ android {
         applicationId "xyz.iridiumion.enlightened"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 13
-        versionName "1.4-alpha1"
+        versionCode 16
+        versionName "1.5-beta2"
     }
     buildTypes {
         release {

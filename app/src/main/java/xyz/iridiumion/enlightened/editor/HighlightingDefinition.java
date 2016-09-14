@@ -19,4 +19,6 @@ public interface HighlightingDefinition {
     Pattern getCommentsPattern();
 
     Pattern getStringPattern();
+
+    Pattern getSymbolPattern();
 }

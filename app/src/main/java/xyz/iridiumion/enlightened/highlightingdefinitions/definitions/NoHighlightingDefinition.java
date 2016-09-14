@@ -5,11 +5,9 @@ import java.util.regex.Pattern;
 import xyz.iridiumion.enlightened.editor.HighlightingDefinition;
 
 /**
- * Author: 0xFireball
+ * Author: 0xFireball, IridiumIon Software
  */
-
-//TODO: Include color in a newer version
-public class DefaultHighlightingDefinition implements HighlightingDefinition {
+public class NoHighlightingDefinition implements HighlightingDefinition {
     //Default Highlighting definitions
     private static final Pattern PATTERN_LINE = Pattern.compile(".*\\n");
     private static final Pattern PATTERN_NUMBERS = Pattern.compile("\\b(\\d*[.]?\\d+)\\b");
@@ -18,6 +16,7 @@ public class DefaultHighlightingDefinition implements HighlightingDefinition {
     private static final Pattern PATTERN_KEYWORDS = Pattern.compile("a^");
     private static final Pattern PATTERN_BUILTINS = Pattern.compile("a^");
     private static final Pattern PATTERN_COMMENTS = Pattern.compile("a^");
+    private static final Pattern PATTERN_SYMBOL = Pattern.compile("a^");
 
 
     @Override
@@ -53,5 +52,10 @@ public class DefaultHighlightingDefinition implements HighlightingDefinition {
     @Override
     public Pattern getStringPattern() {
         return PATTERN_STRING;
+    }
+
+    @Override
+    public Pattern getSymbolPattern() {
+        return PATTERN_SYMBOL;
     }
 }
