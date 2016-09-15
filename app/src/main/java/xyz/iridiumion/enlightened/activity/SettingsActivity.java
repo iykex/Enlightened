@@ -4,9 +4,12 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import xyz.iridiumion.enlightened.EnlightenedApplication;
 import xyz.iridiumion.enlightened.R;
@@ -21,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
         ActionBar actionBar = getActionBar();
         if (actionBar != null)
             getActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -47,6 +51,44 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
+            wirePreferenceEvents();
+        }
+
+        private void wirePreferenceEvents() {
+            Preference aboutPreference = findPreference(getResources().getString(R.string.prefs_key_about));
+            aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    //Show About
+                    new MaterialDialog.Builder(getActivity())
+                            .title("About Enlightened")
+                            .content(
+                                    "Enlightened is a free and open source code editor for Android. " +
+                                            "It is developed by 0xFireball from IridiumIon Software."
+                            )
+                            .positiveText("Cool")
+                            .show();
+                    return true;
+                }
+            });
+
+            Preference importHighlightingPref = findPreference(getResources().getString(R.string.prefs_key_codehighlighting_import));
+            importHighlightingPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    //Show About
+                    new MaterialDialog.Builder(getActivity())
+                            .title("Coming soon")
+                            .content(
+                                    "This feature is coming soon. It's not ready yet, but it will be soon! " +
+                                            "Why don't you join the beta testing program for now?\n" +
+                                            "https://play.google.com/apps/testing/xyz.iridiumion.enlightened"
+                            )
+                            .positiveText("Cool")
+                            .show();
+                    return true;
+                }
+            });
         }
 
         @Override

@@ -18,4 +18,16 @@
             android:summary="@string/pref_font_size_summary"
             android:title="@string/pref_font_size" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs_header_codehighlighting">
+        <Preference
+            android:key="@string/prefs_key_codehighlighting_import"
+            android:summary="@string/pref_codehighlighting_import_summary"
+            android:title="@string/pref_codehighlighting_import" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs_header_about">
+        <Preference
+            android:key="@string/prefs_key_about"
+            android:summary="@string/pref_about_summary"
+            android:title="@string/pref_about" />
+    </PreferenceCategory>
 </PreferenceScreen>

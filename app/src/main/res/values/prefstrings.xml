@@ -3,5 +3,7 @@
     <string name="prefs_key_show_tab_tool">show_tab_tool</string>
     <string name="prefs_key_autosave">autosave</string>
     <string name="prefs_key_font_size">font_size</string>
+    <string name="prefs_key_about">about</string>
+    <string name="prefs_key_codehighlighting_import">codehighlighting_import</string>
 
 </resources>

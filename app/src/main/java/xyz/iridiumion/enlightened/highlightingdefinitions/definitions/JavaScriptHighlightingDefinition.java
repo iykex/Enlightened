@@ -15,7 +15,7 @@ public class JavaScriptHighlightingDefinition implements HighlightingDefinition 
             "^[\t ]*(#define|#undef|#if|#ifdef|#ifndef|#else|#elif|#endif|" +
                     "#error|#pragma|#extension|#version|#line)\\b",
             Pattern.MULTILINE);
-    private static final Pattern PATTERN_STRING = Pattern.compile("\"(\\\\[\\s\\S]|[^\"])*\"|'(\\\\[\\s\\S]|[^'])*'|(//.*|/\\*[\\s\\S]*?\\*/)");
+    private static final Pattern PATTERN_STRING = Pattern.compile("\"((\\\\[^\\n]|[^\"\\n])*)\"");
     private static final Pattern PATTERN_KEYWORDS = Pattern.compile(
             "\\b(let|var|try|catch|break|continue|" +
                     "do|for|while|if|else|switch|in|out|inout|float|int|void|bool|true|false|new|function)\\b");
