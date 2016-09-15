@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         super.onResume();
 
         updateUiToPreferences();
+        updateRecentFilesList();
     }
 
     @Override
@@ -246,6 +247,25 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateRecentFilesList() {
+        //TODO: actually implement
+        showNoRecentFilesAvailable();
+    }
+
+    private void showNoRecentFilesAvailable() {
+        View progressView;
+        View textView;
+
+        if ((progressView = findViewById(
+                R.id.progress_bar)) == null ||
+                (textView = findViewById(
+                        R.id.no_recent_files_message)) == null)
+            return;
+
+        progressView.setVisibility(View.GONE);
+        textView.setVisibility(View.VISIBLE);
     }
 
     private void saveOpenFile() {
