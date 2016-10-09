@@ -1,6 +1,8 @@
 
 # Enlightened
 
-A minimalistic editor app for Android.
+An elegant, minimalist highlighting code editor for Android
 
-[![Build Status](https://travis-ci.com/0xFireball/Enlightened.svg?token=xDGeHcVu1xHoBGUKC6mk&branch=master)](https://travis-ci.com/0xFireball/Enlightened)
+[![Build Status](https://travis-ci.org/0xFireball/Enlightened.svg?branch=master)](https://travis-ci.org/0xFireball/Enlightened)
+
+License: GPLv3
