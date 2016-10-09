@@ -27,11 +27,7 @@ public class FileIOUtil {
             return sb.toString();
         } catch (Exception e) {
             if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e2) {
-                    throw e2;
-                }
+                br.close();
             }
 
             throw e;

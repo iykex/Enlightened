@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 24
@@ -24,6 +25,9 @@ android {
     lintOptions {
         abortOnError false
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 repositories {
@@ -32,6 +36,7 @@ repositories {
     }
     maven { url "https://jitpack.io" }
     maven { url "http://dl.bintray.com/pixplicity/maven" }
+    mavenCentral()
 }
 
 dependencies {
@@ -42,4 +47,5 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.github.jksiezni.permissive:permissive:0.1'
     compile 'com.afollestad.material-dialogs:core:0.9.0.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
