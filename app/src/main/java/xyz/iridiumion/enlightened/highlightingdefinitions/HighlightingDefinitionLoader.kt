@@ -1,11 +1,7 @@
 package xyz.iridiumion.enlightened.highlightingdefinitions
 
 import xyz.iridiumion.enlightened.editor.HighlightingDefinition
-import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.CSharpHighlightingDefinition
-import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.GenericHighlightingDefinition
-import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.JavaHighlightingDefinition
-import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.JavaScriptHighlightingDefinition
-import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.NoHighlightingDefinition
+import xyz.iridiumion.enlightened.highlightingdefinitions.definitions.*
 
 /**
  * Author: 0xFireball
@@ -17,6 +13,7 @@ class HighlightingDefinitionLoader {
             "js" -> return JavaScriptHighlightingDefinition()
             "java" -> return JavaHighlightingDefinition()
             "cs" -> return CSharpHighlightingDefinition()
+            "cpp", "cxx" -> return CPlusPlusHighlightingDefinition()
             "txt" -> return NoHighlightingDefinition()
             else -> return GenericHighlightingDefinition()
         }
