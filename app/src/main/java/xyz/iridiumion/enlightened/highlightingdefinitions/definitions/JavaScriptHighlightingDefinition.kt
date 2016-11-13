@@ -59,7 +59,7 @@ class JavaScriptHighlightingDefinition : HighlightingDefinition {
         private val PATTERN_BUILTINS = Pattern.compile(
                 "\\b(radians|degrees|sin|cos|tan|asin|acos|atan|pow|JSON|document|window|location|console)\\b")
         private val PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*")
-        private val PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()") //TODO: Fix this
+        private val PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()")
         private val PATTERN_IDENTIFIER = Pattern.compile("a^")
     }
 }

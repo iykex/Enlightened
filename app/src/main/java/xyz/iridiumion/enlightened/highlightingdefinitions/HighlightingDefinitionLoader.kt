@@ -14,6 +14,7 @@ class HighlightingDefinitionLoader {
             "java" -> return JavaHighlightingDefinition()
             "cs" -> return CSharpHighlightingDefinition()
             "cpp", "cxx" -> return CPlusPlusHighlightingDefinition()
+            "lua" -> return LuaHighlightingDefinition()
             "txt" -> return NoHighlightingDefinition()
             else -> return GenericHighlightingDefinition()
         }

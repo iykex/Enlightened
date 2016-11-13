@@ -56,7 +56,7 @@ class CPlusPlusHighlightingDefinition : HighlightingDefinition {
                 "\\b(var|try|catch|finally|break|continue|" +
                         "do|for|foreach|continue|while|if|else|switch|in|is|as|float|int|void|bool|true|false|new|" +
                         "public|static|readonly|const|private|protected|class|interface|using|namespace|struct|this|base|" +
-                        "true|false|null|return" +
+                        "true|false|null|return|" +
                         "virtual|internal|abstract|override|async|await|explicit|ref|out|extern|checked|unchecked|" +
                         "continue|enum|lock|partial|params|typeof|unsafe|implicit|default|let|yield|value|operator|global" +
                         ")\\b")
@@ -65,7 +65,7 @@ class CPlusPlusHighlightingDefinition : HighlightingDefinition {
                         "cout|cin|string" +
                         ")\\b")
         private val PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*")
-        private val PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()") //TODO: Are we sure about this?
+        private val PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()")
         private val PATTERN_IDENTIFIER = Pattern.compile("((?<=class)\\s\\w*)|" +
                 "((?<=struct)\\s\\w*)|" +
                 "((?<=typedef)\\s\\w*)|" +
