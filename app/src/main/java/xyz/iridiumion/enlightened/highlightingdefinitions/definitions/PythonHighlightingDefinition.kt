@@ -1,13 +1,12 @@
 package xyz.iridiumion.enlightened.highlightingdefinitions.definitions
 
-import java.util.regex.Pattern
-
 import xyz.iridiumion.enlightened.editor.HighlightingDefinition
+import java.util.regex.Pattern
 
 /**
  * Author: 0xFireball, IridiumIon Software
  */
-class JavaHighlightingDefinition : HighlightingDefinition {
+class PythonHighlightingDefinition : HighlightingDefinition {
 
     override fun getLinePattern(): Pattern {
         return PATTERN_LINE
