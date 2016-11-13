@@ -59,7 +59,7 @@ class LuaHighlightingDefinition : HighlightingDefinition {
                         ")\\b")
         private val PATTERN_BUILTINS = Pattern.compile(
                 "\\b(print|io|setmetatable|require|dofile|loadfile)\\b")
-        private val PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*")
+        private val PATTERN_COMMENTS = Pattern.compile("(?:--\\[(=*)\\[(.|\\n)*?\\]\\1\\])|(?:--.*)")
         private val PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()")
         private val PATTERN_IDENTIFIER = Pattern.compile("((?<=function)\\s\\w*)") //match function names
     }
