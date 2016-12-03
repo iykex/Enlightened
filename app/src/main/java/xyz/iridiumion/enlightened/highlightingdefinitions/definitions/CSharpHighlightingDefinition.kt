@@ -62,7 +62,7 @@ class CSharpHighlightingDefinition : HighlightingDefinition {
                         "continue|enum|lock|partial|params|typeof|unsafe|implicit|default|let|yield|value|operator|global" +
                         ")\\b")
         private val PATTERN_BUILTINS = Pattern.compile(
-                "\\b(void|int|long|ulong|float|double|bool|short|byte|object|string|dynamic|" +
+                "\\b(void|int|long|ulong|float|double|bool|short|char|byte|object|string|dynamic|" +
                         "Console|Int32|Int64|String|Math|Random|Delegate" +
                         ")\\b")
         private val PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*")

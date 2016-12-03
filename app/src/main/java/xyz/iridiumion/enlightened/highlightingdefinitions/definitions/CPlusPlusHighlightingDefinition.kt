@@ -61,7 +61,7 @@ class CPlusPlusHighlightingDefinition : HighlightingDefinition {
                         "continue|enum|lock|partial|params|typeof|unsafe|implicit|default|let|yield|value|operator|global" +
                         ")\\b")
         private val PATTERN_BUILTINS = Pattern.compile(
-                "\\b(void|int|long|ulong|float|double|bool|short|byte|object|string|dynamic|" +
+                "\\b(void|int|long|ulong|float|double|bool|short|byte|char|object|string|dynamic|" +
                         "cout|cin|string" +
                         ")\\b")
         private val PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*")

@@ -59,7 +59,7 @@ class JavaHighlightingDefinition : HighlightingDefinition {
                         "public|static|final|private|protected|class|interface|import|package|this|super" +
                         ")\\b")
         private val PATTERN_BUILTINS = Pattern.compile(
-                "\\b(void|int|long|float|double|boolean|Object|String)\\b")
+                "\\b(void|int|long|float|double|boolean|char|Object|String)\\b")
         private val PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*")
         private val PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()") //TODO: Are we sure about this?
         private val PATTERN_IDENTIFIER = Pattern.compile("((?<=class)\\s\\w*)|" +
