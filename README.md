@@ -14,6 +14,8 @@ Free, open source, no ads, no nonsense.
 
 <a href="https://play.google.com/store/apps/details?id=xyz.iridiumion.enlightened"><img class="alignnone" src="https://i2.wp.com/play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png?resize=248%2C96&#038;ssl=1" alt="Get it on Google Play" data-recalc-dims="1"/></a>
 
+<a href="https://github.com/0xFireball/Enlightened/releases">Download from GitHub Releases</a>
+
 ## Acknowledgements
 
 ### Projects
