@@ -24,6 +24,8 @@
     <string name="prefs_header_codehighlighting">Code Highlighting</string>
     <string name="pref_codehighlighting_import_summary">Import custom language support syntax and color highlighting schemes.</string>
     <string name="pref_codehighlighting_import">Import Highlighting Definitions</string>
+    <string name="pref_tab_size_summary">The tab size for the editor</string>
+    <string name="pref_tab_size">Tab Size</string>
 
 
 </resources>

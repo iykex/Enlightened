@@ -197,6 +197,9 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         String editor_font_size_key = getResources().getString(R.string.prefs_key_font_size);
         float newFontSize = Float.parseFloat(EnlightenedApplication.preferences.getString(editor_font_size_key, "12.0"));
         editorFragment.getEditor().setTextSize(TypedValue.COMPLEX_UNIT_SP, newFontSize);
+        String editor_tab_size_key = getResources().getString(R.string.prefs_key_tab_size);
+        int newTabSize = (int) Float.parseFloat(EnlightenedApplication.preferences.getString(editor_tab_size_key, "4.0"));
+        editorFragment.getEditor().setTabWidth(newTabSize);
     }
 
     @Override

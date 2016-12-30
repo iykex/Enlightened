@@ -17,6 +17,12 @@
             android:key="@string/prefs_key_font_size"
             android:summary="@string/pref_font_size_summary"
             android:title="@string/pref_font_size" />
+        <EditTextPreference
+            android:defaultValue="4"
+            android:inputType="number"
+            android:key="@string/prefs_key_tab_size"
+            android:summary="@string/pref_tab_size_summary"
+            android:title="@string/pref_tab_size" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/prefs_header_codehighlighting">
         <Preference
