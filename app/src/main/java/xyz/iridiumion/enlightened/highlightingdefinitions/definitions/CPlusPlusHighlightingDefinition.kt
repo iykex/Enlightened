@@ -62,7 +62,7 @@ class CPlusPlusHighlightingDefinition : HighlightingDefinition {
                         ")\\b")
         private val PATTERN_BUILTINS = Pattern.compile(
                 "\\b(void|int|long|ulong|float|double|bool|short|byte|char|object|string|dynamic|" +
-                        "cout|cin|string" +
+                        "cout|cin|endl|string" +
                         ")\\b")
         private val PATTERN_COMMENTS = Pattern.compile("/\\*(?:.|[\\n\\r])*?\\*/|//.*")
         private val PATTERN_SYMBOL = Pattern.compile("(\\{|\\}\\)|\\()")
