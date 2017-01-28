@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
 
                         String textToSave = editorFragment.getEditor().getText().toString();
                         try {
-                            FileIOUtil.writeAllText(currentOpenFilePath, textToSave);
+                            FileIOUtil.INSTANCE.writeAllText(currentOpenFilePath, textToSave);
                             if (showToast)
                                 Toast.makeText(MainActivity.this, "File saved", Toast.LENGTH_SHORT).show();
                         } catch (IOException e) {
@@ -386,10 +386,10 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         if (requestCode == REQUEST_CODE_BROWSE_FOR_FILE && resultCode == RESULT_OK) {
             String selectedFilePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
             File selectedFile = new File(selectedFilePath);
-            String selectedFileExt = RandomUtils.getFileExtension(selectedFilePath);
+            String selectedFileExt = RandomUtils.INSTANCE.getFileExtension(selectedFilePath);
             //Load file into editor
             try {
-                String fileContent = FileIOUtil.readAllText(selectedFilePath);
+                String fileContent = FileIOUtil.INSTANCE.readAllText(selectedFilePath);
                 editorFragment.getEditor().setText(fileContent);
                 HighlightingDefinitionLoader definitionLoader = new HighlightingDefinitionLoader();
                 HighlightingDefinition highlightingDefinition = definitionLoader.selectDefinitionFromFileExtension(selectedFileExt);
