@@ -48,8 +48,6 @@ class IridiumHighlightingEditorJ : EditText {
     private var onTextChangedListener: OnTextChangedListener? = null
     private var updateDelay = 1000
     private var errorLine = 0
-    var isModified = false
-        private set
     private var modified = true
     private var colorError: Int = 0
     private var colorNumber: Int = 0
@@ -70,6 +68,10 @@ class IridiumHighlightingEditorJ : EditText {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
 
         init(context)
+    }
+
+    fun isModified(): Boolean {
+        return modified;
     }
 
     fun setOnTextChangedListener(listener: OnTextChangedListener) {
@@ -113,8 +115,6 @@ class IridiumHighlightingEditorJ : EditText {
         cancelUpdate()
 
         errorLine = 0
-        isModified = false
-
         modified = false
         setText(highlight(SpannableStringBuilder(text)))
         modified = true
@@ -223,7 +223,7 @@ class IridiumHighlightingEditorJ : EditText {
                         if (!modified)
                             return
 
-                        isModified = true
+                        modified = true
                         updateHandler.postDelayed(
                                 updateRunnable,
                                 updateDelay.toLong())
