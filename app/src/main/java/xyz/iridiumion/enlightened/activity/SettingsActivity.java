@@ -95,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
         public void onResume() {
             super.onResume();
 
-            EnlightenedApplication.preferences
+            EnlightenedApplication.Companion.getPreferences()
                     .registerOnSharedPreferenceChangeListener(
                             this);
         }
@@ -104,7 +104,7 @@ public class SettingsActivity extends AppCompatActivity {
         public void onPause() {
             super.onPause();
 
-            EnlightenedApplication.preferences
+            EnlightenedApplication.Companion.getPreferences()
                     .unregisterOnSharedPreferenceChangeListener(
                             this);
         }

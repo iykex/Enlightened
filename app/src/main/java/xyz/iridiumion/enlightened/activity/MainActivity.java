@@ -112,8 +112,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         String insert_tab_visible_key = getResources().getString(R.string.prefs_key_show_tab_tool);
 
         menu.findItem(R.id.insert_tab)
-                .setVisible(EnlightenedApplication
-                        .preferences
+                .setVisible(EnlightenedApplication.Companion.getPreferences()
                         .getBoolean(insert_tab_visible_key, true));
 
         /*
@@ -195,10 +194,10 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
         invalidateOptionsMenu();
 
         String editor_font_size_key = getResources().getString(R.string.prefs_key_font_size);
-        float newFontSize = Float.parseFloat(EnlightenedApplication.preferences.getString(editor_font_size_key, "12.0"));
+        float newFontSize = Float.parseFloat(EnlightenedApplication.Companion.getPreferences().getString(editor_font_size_key, "12.0"));
         editorFragment.getEditor().setTextSize(TypedValue.COMPLEX_UNIT_SP, newFontSize);
         String editor_tab_size_key = getResources().getString(R.string.prefs_key_tab_size);
-        int newTabSize = (int) Float.parseFloat(EnlightenedApplication.preferences.getString(editor_tab_size_key, "4.0"));
+        int newTabSize = (int) Float.parseFloat(EnlightenedApplication.Companion.getPreferences().getString(editor_tab_size_key, "4.0"));
         editorFragment.getEditor().setTabWidth(newTabSize);
     }
 
@@ -223,8 +222,7 @@ public class MainActivity extends AppCompatActivity implements IridiumHighlighti
             editorFragment.updateHighlighting();
         }
         String autosave_key = getResources().getString(R.string.prefs_key_autosave);
-        if (EnlightenedApplication
-                .preferences
+        if (EnlightenedApplication.Companion.getPreferences()
                 .getBoolean(autosave_key, true) && currentOpenFilePath != null) {
             saveOpenFile(false, false);
         }
